@@ -6,7 +6,7 @@
       "description": "Beautiful apartment in Nairobi CBD",
       "price": 120000,
       "status": "Sold",
-      "image": "/images/house1.jpg",
+      "image": "/public/images/pexels-kate-filatova-1861817299-30707539.jpg",
       "agent": "John Doe",
       "client": null
     },
@@ -15,6 +15,7 @@
       "location": "Kilimani",
       "price": 350000,
       "status": "Sold",
+      "image": "/public/images/modern apartment.jpg",
       "id": "8lmaZOWiSxM"
     },
     {
@@ -22,6 +23,7 @@
       "location": "Limuru",
       "price": 400000,
       "status": "Sold",
+      "image": "/public/images/pexels-curtis-adams-1694007-3935320.jpg",
       "id": "NxqIKgZQS2g"
     },
     {
@@ -29,37 +31,56 @@
       "location": "Kiambu",
       "price": 200000,
       "status": "Sold",
+      "image": "/public/images/villa.webp",
       "id": "R07AZKOdMgs"
     }
   ],
   "agents": [
     {
+      "name": "Christian Kamau",
+      "email": "christiankamau@gmail.com",
+      "phone": "0798765432",
+      "id": "Ofx4JuhxSUQ"
+    },
+    {
       "name": "James Karanja",
-      "email": "james.karanja4@student.moringaschool.com",
-      "phone": "3000",
-      "id": "pTkHecvmpE4"
+      "email": "jameskaranja@gmail.com",
+      "phone": "0712345678",
+      "id": "ogvlSzSD6gU"
+    },
+    {
+      "name": "Jennifer Mukinka",
+      "email": "jennifersencha@gmail.com",
+      "phone": "0704248554",
+      "id": "cqBytsnQMl0"
     }
   ],
   "clients": [
     {
       "name": "James Karanja",
-      "email": "james.karanja4@student.moringaschool.com",
-      "phone": "0769224860",
-      "id": "au87Osydxw4"
+      "email": "jameskaranja@gmail.com",
+      "phone": "0712345666",
+      "id": "zjmOyoosCI4"
+    },
+    {
+      "name": "John Doe",
+      "email": "johndoe@gmail.com",
+      "phone": "0756786468",
+      "id": "127Y3F67q_o"
     }
   ],
   "showings": [
     {
       "propertyId": "8lmaZOWiSxM",
-      "clientId": null,
-      "agentId": null,
+      "clientId": "zjmOyoosCI4",
+      "agentId": "Ofx4JuhxSUQ",
       "date": "2026-05-14",
       "status": "completed",
       "id": "1EJQBOn6HWM"
     },
     {
       "propertyId": "NxqIKgZQS2g",
-      "clientId": null,
+      "clientId": "127Y3F67q_o",
       "agentId": null,
       "date": "2026-05-15",
       "status": "completed",
@@ -67,15 +88,15 @@
     },
     {
       "propertyId": "1",
-      "clientId": null,
-      "agentId": null,
+      "clientId": "zjmOyoosCI4",
+      "agentId": "ogvlSzSD6gU",
       "date": "2026-05-16",
       "status": "cancelled",
       "id": "UcX96264K1I"
     },
     {
       "propertyId": "R07AZKOdMgs",
-      "clientId": null,
+      "clientId": "127Y3F67q_o",
       "agentId": null,
       "date": "2026-05-15",
       "status": "completed",
