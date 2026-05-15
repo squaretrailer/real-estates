@@ -1,12 +1,14 @@
 {
   "properties": [
     {
+      "id": "1",
       "title": "Modern Apartment",
-      "location": "Kilimani",
+      "description": "Beautiful apartment in Nairobi CBD",
       "price": 120000,
       "status": "Sold",
       "image": "/public/images/pexels-kate-filatova-1861817299-30707539.jpg",
-      "id": "1"
+      "agent": "John Doe",
+      "client": null
     },
     {
       "title": "Hunid Homes",
