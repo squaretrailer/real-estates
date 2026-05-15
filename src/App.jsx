@@ -1,4 +1,6 @@
+// import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './index.css'
 
 import Dashboard from "./pages/Dashboard";
 import Properties from "./pages/Properties";
@@ -13,28 +15,23 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<DashboardLayout />}>
-          {/* DASHBOARD */}
           <Route path="/" element={<Dashboard />} />
 
-          {/* PROPERTIES */}
           <Route
             path="/properties"
             element={<Properties />}
           />
 
-          {/* AGENTS */}
           <Route
             path="/agents"
             element={<Agents />}
           />
 
-          {/* CLIENTS */}
           <Route
             path="/clients"
             element={<Clients />}
           />
 
-          {/* SHOWINGS */}
           <Route
             path="/showings"
             element={<Showings />}

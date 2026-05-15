@@ -1,0 +1,131 @@
+{
+  "properties": [
+    {
+      "title": "Modern Apartment",
+      "location": "Kilimani",
+      "price": 120000,
+      "status": "Sold",
+      "image": "/public/images/pexels-kate-filatova-1861817299-30707539.jpg",
+      "id": "1"
+    },
+    {
+      "title": "Hunid Homes",
+      "location": "Kilimani",
+      "price": 350000,
+      "status": "Sold",
+      "image": "/public/images/modern apartment.jpg",
+      "id": "8lmaZOWiSxM"
+    },
+    {
+      "title": "Tilisi ",
+      "location": "Limuru",
+      "price": 400000,
+      "status": "Sold",
+      "image": "/public/images/pexels-curtis-adams-1694007-3935320.jpg",
+      "id": "NxqIKgZQS2g"
+    },
+    {
+      "title": "Ivory",
+      "location": "Kiambu",
+      "price": 200000,
+      "status": "Sold",
+      "image": "/public/images/villa.webp",
+      "id": "R07AZKOdMgs"
+    },
+    {
+      "title": "Nouveu",
+      "location": "Ngong Road",
+      "price": 20000,
+      "status": "Available",
+      "image": "/public/images/modern apartment.jpg",
+      "id": "YsZuKVGheJw"
+    },
+    {
+      "title": "Tamarind",
+      "location": "Kiambu",
+      "price": 350000,
+      "status": "Available",
+      "image": "/public/images/pexels-kate-filatova-1861817299-30707539.jpg",
+      "id": "svSN22T6LEg"
+    }
+  ],
+  "agents": [
+    {
+      "name": "Jennifer Kosencha",
+      "email": "jenniferkosencha@gmail.com",
+      "phone": "0723121556",
+      "id": "OI7HzfTiSDs"
+    },
+    {
+      "name": "John Doe",
+      "email": "johndoe@gmail.com",
+      "phone": "0784856352",
+      "id": "ZkDOuj5BSyI"
+    },
+    {
+      "name": "Jane Smith",
+      "email": "janesmith@gmail.com",
+      "phone": "0745242312",
+      "id": "adyOeGr4vWg"
+    },
+    {
+      "name": "Christian Kamau",
+      "email": "christiankamau@gmail.com",
+      "phone": "0734242356",
+      "id": "fn6i8J5AHMk"
+    }
+  ],
+  "clients": [
+    {
+      "name": "Janet Karanja",
+      "email": "janetkaranja@gmail.com",
+      "phone": "0712345666",
+      "id": "zjmOyoosCI4"
+    },
+    {
+      "name": "John Deer",
+      "email": "johndere@gmail.com",
+      "phone": "0756786468",
+      "id": "127Y3F67q_o"
+    },
+    {
+      "name": "Cate Dora",
+      "email": "catedora@gmail.com",
+      "phone": "07345624564",
+      "id": "0T7Hab1axB4"
+    },
+    {
+      "name": "Derrick Ayieko",
+      "email": "ayiekoderrick@gmail.com",
+      "phone": "073453424355",
+      "id": "ao4kOVB7msg"
+    }
+  ],
+  "showings": [
+    {
+      "propertyId": "1",
+      "clientId": "zjmOyoosCI4",
+      "agentId": "ZkDOuj5BSyI",
+      "date": "2026-05-16",
+      "status": "scheduled",
+      "id": "jnDHn0W48gg"
+    },
+    {
+      "propertyId": "8lmaZOWiSxM",
+      "clientId": "127Y3F67q_o",
+      "agentId": "adyOeGr4vWg",
+      "date": "2026-05-23",
+      "status": "scheduled",
+      "id": "tSRy6ZZhAE4"
+    },
+    {
+      "propertyId": "NxqIKgZQS2g",
+      "clientId": "0T7Hab1axB4",
+      "agentId": "OI7HzfTiSDs",
+      "date": "2026-05-14",
+      "status": "completed",
+      "id": "jFY9zHzEu38"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
