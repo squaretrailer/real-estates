@@ -1,16 +1,66 @@
-# React + Vite
+# Real Estate CRM Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full‑featured CRM dashboard for real estate agencies to manage properties, agents, clients, and showings. Built with React, Tailwind CSS, and a mock JSON Server backend.
 
-Currently, two official plugins are available:
+![Dashboard Preview](https://placehold.co/800x400?text=CRM+Dashboard+Preview)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Dashboard Overview** – Key metrics (properties, clients, agents, revenue) with charts.
+- **Property Management** – Add, edit, delete, search, and filter properties. Status badges (Available/Sold/Pending).
+- **Agent & Client Management** – CRUD operations with modal forms.
+- **Showings Management** – Schedule showings, link properties/clients/agents, update status, and mark properties as sold.
+- **Responsive Design** – Works on desktop, tablet, and mobile. Collapsible sidebar with hamburger menu.
+- **Real‑time Data** – All changes persist to a local JSON server.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend**: React 19 + Vite
+- **Styling**: Tailwind CSS
+- **Routing**: React Router v6
+- **HTTP Client**: Axios
+- **Charts**: Recharts
+- **Icons**: React Icons (Fa, Fi)
+- **Backend (mock)**: JSON Server
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Prerequisites
+
+- Node.js (v18 or later)
+- npm or yarn
+
+## Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd real-estate-crm
+   
+2. **Install Frontend dependencies**
+  ```bash
+     npm install
+     npm istall -g json-server
+     npm install axios
+     npm install react-router-dom recharts react-icons
+
+## Project Structure
+src/
+├── components/
+│   ├── dashboard/
+│   │   ├── StatCard.jsx
+│   │   ├── RevenueChart.jsx
+│   │   └── PropertyPerformance.jsx
+│   └── layout/
+│       ├── DashboardLayout.jsx   (handles responsive sidebar toggle)
+│       ├── Sidebar.jsx           (mobile/desktop sidebar with overlay)
+│       └── Navbar.jsx
+├── pages/
+│   ├── Dashboard.jsx
+│   ├── Properties.jsx
+│   ├── Agents.jsx
+│   ├── Clients.jsx
+│   └── Showings.jsx
+├── App.jsx
+└── main.jsx
+
+## Conclusion
+We created a real estate page that enables companies to sell housing estates and help clients easily find what they desired dream homes.
