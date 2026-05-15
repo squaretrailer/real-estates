@@ -12,7 +12,6 @@ export default function Dashboard() {
 
   const [loading, setLoading] = useState(true);
 
-  // FETCH ALL DATA
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +34,6 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
-  // PROPERTY STATS
   const availableProperties = properties.filter(
     (p) => p.status?.toLowerCase() === "available"
   ).length;
@@ -58,7 +56,7 @@ export default function Dashboard() {
 
   return (
     <div className="p-6">
-      {/* PAGE TITLE */}
+
       <div className="mb-8">
         <h1 className="text-4xl text-amber-50 font-bold">Dashboard Overview</h1>
         <p className="text-gray-300 mt-2">
@@ -66,7 +64,6 @@ export default function Dashboard() {
         </p>
       </div>
 
-      {/* STATS */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <StatCard
           title="Total Properties"
@@ -89,7 +86,6 @@ export default function Dashboard() {
         />
       </div>
 
-      {/* SECOND ROW */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <StatCard
           title="Sold Properties"
@@ -102,14 +98,11 @@ export default function Dashboard() {
         />
       </div>
 
-      {/* CHARTS */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* REVENUE CHART */}
         <div className="lg:col-span-2 bg-black rounded-xl shadow-md p-4">
           <RevenueChart properties={properties} />
         </div>
 
-        {/* PROPERTY PERFORMANCE */}
         <div className="bg-black rounded-xl shadow-md p-4">
           <PropertyPerformance properties={properties} />
         </div>

@@ -5,7 +5,7 @@ export default function Properties() {
   const [properties, setProperties] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); //
+  const [searchTerm, setSearchTerm] = useState(""); 
 
   const [formData, setFormData] = useState({
     title: "",
@@ -15,7 +15,6 @@ export default function Properties() {
     image: "",
   });
 
-  // FETCH PROPERTIES
   const fetchProperties = async () => {
     try {
       const res = await axios.get("http://localhost:3001/properties");
@@ -29,7 +28,6 @@ export default function Properties() {
     fetchProperties();
   }, []);
 
-  // HANDLE INPUTS
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -37,7 +35,6 @@ export default function Properties() {
     });
   };
 
-  // RESET FORM & CLOSE
   const resetForm = () => {
     setFormData({
       title: "",
@@ -50,7 +47,6 @@ export default function Properties() {
     setShowForm(false);
   };
 
-  // ADD or UPDATE PROPERTY
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -72,7 +68,6 @@ export default function Properties() {
     }
   };
 
-  // DELETE PROPERTY
   const deleteProperty = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/properties/${id}`);
@@ -82,7 +77,6 @@ export default function Properties() {
     }
   };
 
-  // EDIT PROPERTY (load data into form)
   const startEditing = (property) => {
     setFormData({
       title: property.title,
@@ -95,7 +89,6 @@ export default function Properties() {
     setShowForm(true);
   };
 
-  // FILTER PROPERTIES based on search term
   const filteredProperties = properties.filter((property) => {
     const term = searchTerm.toLowerCase();
     return (
@@ -104,7 +97,6 @@ export default function Properties() {
     );
   });
 
-  // STATUS COLORS
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
       case "available":
@@ -120,19 +112,19 @@ export default function Properties() {
 
   return (
     <div className="p-6">
-      {/* HEADER with Search Bar */}
+
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-        <h1 className="text-3xl font-bold">Properties</h1>
+        <h1 className="text-3xl text-amber-50 font-bold">Properties</h1>
         
         <div className="flex gap-3 w-full sm:w-auto">
-          {/*  Search Input */}
-          <div className="relative flex-1 sm:flex-none">
+
+          <div className="relative flex-1 text-amber-50 sm:flex-none">
             <input
               type="text"
               placeholder="Search by title or location..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none w-full sm:w-64"
+              className="pl-10 pr-4 py-2 border border-gray-500 rounded focus:border-transparent outline-none w-full sm:w-64"
             />
             <svg
               className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
@@ -154,25 +146,24 @@ export default function Properties() {
               resetForm();
               setShowForm(!showForm);
             }}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition whitespace-nowrap"
+            className="bg-cyan-600 text-amber-50 px-4 py-2 rounded-lg whitespace-nowrap"
           >
             {showForm ? "Close Form" : "+ Add Property"}
           </button>
         </div>
       </div>
 
-      {/* MODERN FORM (labels above inputs – no overlap) */}
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 md:p-8 mb-8 transition-all"
+          className="bg-amber-50 rounded border border-gray-200 p-6 md:p-8 mb-8"
         >
-          <h2 className="text-2xl font-bold bg-linear-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
+          <h2 className="text-2xl font-bold bg-linear-to-r from-cyan-800 to-cyan-600 bg-clip-text text-transparent mb-6">
             {editingId ? " Edit Property" : " Add New Property"}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Title */}
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Property Title
@@ -187,7 +178,6 @@ export default function Properties() {
               />
             </div>
 
-            {/* Location */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Location
@@ -202,7 +192,6 @@ export default function Properties() {
               />
             </div>
 
-            {/* Price */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Price (Ksh)
@@ -217,7 +206,6 @@ export default function Properties() {
               />
             </div>
 
-            {/* Image URL */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Image URL (optional)
@@ -232,7 +220,6 @@ export default function Properties() {
               />
             </div>
 
-            {/* Status */}
             <div className="md:col-span-2">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Status
@@ -244,19 +231,18 @@ export default function Properties() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none bg-white"
                 required
               >
-                <option value="" disabled>Select status</option>
-                <option value="Available">Available</option>
-                <option value="Sold">Sold</option>
-                <option value="Pending">Pending</option>
+                <option className="text-cyan-800" value="" disabled>Select status</option>
+                <option className="text-cyan-800 bg-green-100" value="Available">Available</option>
+                <option className="text-cyan-800 bg-red-100" value="Sold">Sold</option>
+                <option className="text-cyan-800 bg-yellow-100" value="Pending">Pending</option>
               </select>
             </div>
           </div>
 
-          {/* Buttons */}
           <div className="flex gap-4 mt-8">
             <button
               type="submit"
-              className="flex-1 bg-linear-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all"
+              className="flex-1 bg-linear-to-r from-cyan-800 to-cyan-500 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 rounded-xl"
             >
               {editingId ? "Update Property" : " Save Property"}
             </button>
@@ -273,7 +259,6 @@ export default function Properties() {
         </form>
       )}
 
-      {/* PROPERTY CARDS (Filtered) */}
       {filteredProperties.length === 0 ? (
         <div className="text-center py-12 bg-gray-50 rounded-2xl">
           <p className="text-gray-500 text-lg">No properties match your search.</p>
@@ -284,7 +269,7 @@ export default function Properties() {
           {filteredProperties.map((property) => (
             <div
               key={property.id}
-              className="bg-black rounded-2xl shadow-sm hover:shadow-lg transition overflow-hidden border group"
+              className="bg-gray-900 overflow-hidden"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -301,23 +286,23 @@ export default function Properties() {
                 </div>
               </div>
               <div className="p-5">
-                <h2 className="text-lg font-bold text-white">
+                <h2 className="text-lg font-bold text-amber-50">
                   {property.title}
                 </h2>
-                <p className="text-white text-sm mt-1">{property.location}</p>
+                <p className="text-gray-100 text-sm mt-1">{property.location}</p>
                 <p className="text-2xl font-bold mt-3 text-cyan-400">
-                  Ksh {Number(property.price).toLocaleString()}
+                  <span className="text-cyan-800 text-sm"> Ksh </span> {Number(property.price).toLocaleString()}
                 </p>
                 <div className="mt-4 flex gap-2">
                   <button
                     onClick={() => deleteProperty(property.id)}
-                    className="bg-amber-700 hover:bg-red-200 text-white px-4 py-2 rounded-lg w-full transition"
+                    className="bg-white text-red-500 px-4 py-2 rounded w-full"
                   >
                     Delete
                   </button>
                   <button
                     onClick={() => startEditing(property)}
-                    className="bg-cyan-600 hover:bg-blue-200 text-white px-4 py-2 rounded-lg w-full transition"
+                    className="bg-cyan-600 text-white px-4 py-2 rounded w-full"
                   >
                     Edit
                   </button>

@@ -18,7 +18,6 @@ export default function Showings() {
     status: "scheduled",
   });
 
-  // FETCH DATA
   useEffect(() => {
     const fetchData = async () => {
       const [s, p, c, a] = await Promise.all([
@@ -37,7 +36,6 @@ export default function Showings() {
     fetchData();
   }, []);
 
-  // HELPERS
   const getProperty = (id) =>
     properties.find((p) => String(p.id) === String(id));
 
@@ -45,7 +43,6 @@ export default function Showings() {
 
   const getAgent = (id) => agents.find((a) => String(a.id) === String(id));
 
-  // INPUT HANDLER
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -53,7 +50,6 @@ export default function Showings() {
     });
   };
 
-  // ADD SHOWING
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -73,13 +69,11 @@ export default function Showings() {
     setShowForm(false);
   };
 
-  // DELETE SHOWING
   const deleteShowing = async (id) => {
     await axios.delete(`http://localhost:3001/showings/${id}`);
     setShowings(showings.filter((s) => s.id !== id));
   };
 
-  // UPDATE STATUS
   const updateStatus = async (id, newStatus) => {
     await axios.patch(`http://localhost:3001/showings/${id}`, {
       status: newStatus,
@@ -89,7 +83,6 @@ export default function Showings() {
     setShowings(res.data);
   };
 
-  // MARK PROPERTY AS SOLD
   const markPropertyAsSold = async (propertyId) => {
     await axios.patch(`http://localhost:3001/properties/${propertyId}`, {
       status: "Sold",
@@ -106,9 +99,8 @@ export default function Showings() {
 
   return (
     <div className="p-6">
-      {/* HEADER */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Showings</h1>
+        <h1 className="text-3xl text-amber-50 font-bold">Showings</h1>
 
         <button
           onClick={() => setShowForm(!showForm)}
@@ -118,26 +110,26 @@ export default function Showings() {
         </button>
       </div>
 
-      {/* SEARCH */}
-      <input
-        type="text"
-        placeholder="Search by property, client, agent or status..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="border p-3 rounded-lg w-full mb-6 focus:ring-2 focus:ring-cyan-400 outline-none"
-      />
+      <div className="relative flex-1 text-amber-50 sm:flex-none">
+        <input
+          type="text"
+          placeholder="Search by property, client, agent or status..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border border-gray-500 p-3 rounded w-full mb-6 focus:ring-2 outline-none"
+        />
+      </div>
 
-      {/* FORM */}
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-6 rounded-xl shadow-md mb-6 grid gap-4"
+          className="bg-amber-50 p-6 rounded mb-6 grid gap-4"
         >
           <select
             name="propertyId"
             value={form.propertyId}
             onChange={handleChange}
-            className="border p-3 rounded"
+            className="border border-gray-300 p-3 rounded"
             required
           >
             <option value="">Select Property</option>
@@ -152,7 +144,7 @@ export default function Showings() {
             name="clientId"
             value={form.clientId}
             onChange={handleChange}
-            className="border p-3 rounded"
+            className="border border-gray-300 p-3 rounded"
             required
           >
             <option value="">Select Client</option>
@@ -167,7 +159,7 @@ export default function Showings() {
             name="agentId"
             value={form.agentId}
             onChange={handleChange}
-            className="border p-3 rounded"
+            className="border border-gray-300 p-3 rounded"
             required
           >
             <option value="">Select Agent</option>
@@ -183,17 +175,16 @@ export default function Showings() {
             name="date"
             value={form.date}
             onChange={handleChange}
-            className="border p-3 rounded"
+            className="border border-gray-300 p-3 rounded"
             required
           />
 
-          <button className="bg-green-600 text-white p-3 rounded">
+          <button className="flex-1 bg-linear-to-r from-cyan-800 to-cyan-500 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 rounded-xl">
             Save Showing
           </button>
         </form>
       )}
 
-      {/* CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {showings
           .filter((s) => {
@@ -210,188 +201,96 @@ export default function Showings() {
             );
           })
           .map((s) => {
-          const property = getProperty(s.propertyId);
-          const client = getClient(s.clientId);
-          const agent = getAgent(s.agentId);
+            const property = getProperty(s.propertyId);
+            const client = getClient(s.clientId);
+            const agent = getAgent(s.agentId);
 
-          return (
-            // <div
-            //   key={s.id}
-            //   className="bg-white rounded-2xl shadow-md overflow-hidden border"
-            // >
-            //   {/* IMAGE */}
-            //   <img
-            //     src={property?.image || "https://placehold.co/600x400"}
-            //     className="w-full h-52 object-cover"
-            //     alt="property"
-            //   />
+            return (
+              <div className="bg-gray-900 overflow-hidden">
+                <div className="relative">
+                  <img
+                    src={property?.image || "https://placehold.co/600x400"}
+                    className="w-full h-52 object-cover group-hover:scale-105 transition duration-300"
+                  />
 
-            //   {/* CONTENT */}
-            //   <div className="p-5">
-            //     {/* TITLE + STATUS */}
-            //     <div className="flex justify-between items-start">
-            //       <h2 className="text-xl font-bold">
-            //         {property?.title || "Unknown Property"}
-            //       </h2>
-
-            //       <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
-            //         {s.status}
-            //       </span>
-            //     </div>
-
-            //     {/* DETAILS */}
-            //     <p className="text-gray-500 mt-2">
-            //       📍 {property?.location || "No location"}
-            //     </p>
-
-            //     <p className="text-2xl font-bold mt-3 text-cyan-900">
-            //       Ksh {Number(property?.price || 0).toLocaleString()}
-            //     </p>
-
-            //     <p className="mt-3 text-gray-700">
-            //       <strong>Client:</strong> {client?.name || "Unknown"}
-            //     </p>
-
-            //     <p className="text-gray-700">
-            //       <strong>Agent:</strong> {agent?.name || "Unknown"}
-            //     </p>
-
-            //     <p className="text-gray-700">
-            //       <strong>Date:</strong> {s.date}
-            //     </p>
-
-            //     {/* STATUS */}
-            //     <div className="mt-4">
-            //       <select
-            //         value={s.status}
-            //         onChange={(e) => updateStatus(s.id, e.target.value)}
-            //         className="border p-2 rounded w-full"
-            //       >
-            //         <option value="scheduled">Scheduled</option>
-            //         <option value="completed">Completed</option>
-            //         <option value="cancelled">Cancelled</option>
-            //       </select>
-            //     </div>
-
-            //     {/* MARK AS SOLD */}
-            //     {property?.status === "Sold" ? (
-            //       <div className="mt-3 bg-green-100 text-green-700 px-4 py-2 rounded-lg w-full text-center font-semibold">
-            //         SOLD
-            //       </div>
-            //     ) : (
-            //       s.status === "completed" &&
-            //       property?.id && (
-            //         <button
-            //           onClick={() => markPropertyAsSold(property.id)}
-            //           className="mt-3 bg-emerald-600 text-white px-4 py-2 rounded-lg w-full hover:bg-emerald-700"
-            //         >
-            //           Mark Property as Sold
-            //         </button>
-            //       )
-            //     )}
-
-            //     {/* DELETE */}
-            //     <button
-            //       onClick={() => deleteShowing(s.id)}
-            //       className="mt-3 bg-red-500 text-white px-4 py-2 rounded-lg w-full"
-            //     >
-            //       Delete
-            //     </button>
-            //   </div>
-            // </div>
-
-            <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition overflow-hidden border group">
-              {/* IMAGE */}
-              <div className="relative">
-                <img
-                  src={property?.image || "https://placehold.co/600x400"}
-                  className="w-full h-52 object-cover group-hover:scale-105 transition duration-300"
-                />
-
-                {/* STATUS BADGE */}
-                <div
-                  className={`absolute top-3 right-3 px-3 py-1 text-xs font-semibold rounded-full ${
-                    s.status === "completed"
-                      ? "bg-green-100 text-green-700"
-                      : s.status === "cancelled"
-                        ? "bg-red-100 text-red-700"
-                        : "bg-yellow-100 text-yellow-700"
-                  }`}
-                >
-                  {s.status}
-                </div>
-              </div>
-
-              {/* CONTENT */}
-              <div className="p-5">
-                <h2 className="text-lg font-bold text-gray-800">
-                  {property?.title}
-                </h2>
-
-                <p className="text-gray-500 text-sm mt-1">
-                  {property?.location}
-                </p>
-
-                <p className="text-xl font-bold mt-3 text-cyan-900">
-                  Ksh {Number(property?.price || 0).toLocaleString()}
-                </p>
-
-                {/* DETAILS GRID */}
-                <div className="mt-4 space-y-1 text-sm text-gray-600">
-                  <p>
-                    <strong>Client:</strong> {client?.name}
-                  </p>
-
-                  <p>
-                    <strong>Agent:</strong> {agent?.name}
-                  </p>
-
-                  <p>
-                    <strong>Date:</strong> {s.date}
-                  </p>
-                </div>
-
-                {/* STATUS SELECT */}
-                <div className="mt-4">
-                  <select
-                    value={s.status}
-                    onChange={(e) => updateStatus(s.id, e.target.value)}
-                    className="border p-2 rounded-lg w-full focus:ring-2 focus:ring-cyan-400 outline-none"
+                  <div
+                    className={`absolute top-3 right-3 px-3 py-1 text-xs font-semibold rounded-full ${
+                      s.status === "completed"
+                        ? "bg-green-100 text-green-700"
+                        : s.status === "cancelled"
+                          ? "bg-red-100 text-red-700"
+                          : "bg-yellow-100 text-yellow-700"
+                    }`}
                   >
-                    <option value="scheduled">Scheduled</option>
-                    <option value="completed">Completed</option>
-                    <option value="cancelled">Cancelled</option>
-                  </select>
+                    {s.status}
+                  </div>
                 </div>
 
-                {/* SOLD BUTTON */}
-                {property?.status === "Sold" ? (
-                  <div className="mt-3 bg-green-100 text-green-700 px-4 py-2 rounded-lg text-center font-semibold">
-                    SOLD
-                  </div>
-                ) : (
-                  s.status === "completed" &&
-                  property?.id && (
-                    <button
-                      onClick={() => markPropertyAsSold(property.id)}
-                      className="mt-3 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg w-full transition"
-                    >
-                      Mark Property as Sold
-                    </button>
-                  )
-                )}
+                <div className="p-5">
+                  <h2 className="text-lg font-bold text-amber-50">
+                    {property?.title}
+                  </h2>
 
-                {/* DELETE */}
-                <button
-                  onClick={() => deleteShowing(s.id)}
-                  className="mt-3 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg w-full transition"
-                >
-                  Delete
-                </button>
+                  <p className="text-gray-300 text-sm mt-1">
+                    {property?.location}
+                  </p>
+
+                  <p className="text-xl font-bold mt-3 text-cyan-500">
+                   <span className="text-sm text-cyan-900"> Ksh </span>{Number(property?.price || 0).toLocaleString()}
+                  </p>
+
+                  <div className="mt-4 space-y-1 text-sm text-gray-300">
+                    <p>
+                      <strong>CLIENT:</strong> {client?.name}
+                    </p>
+
+                    <p>
+                      <strong>AGENT:</strong> {agent?.name}
+                    </p>
+
+                    <p>
+                      <strong>Date:</strong> {s.date}
+                    </p>
+                  </div>
+
+                  <div className="mt-4">
+                    <select
+                      value={s.status}
+                      onChange={(e) => updateStatus(s.id, e.target.value)}
+                      className="border border-gray-300 p-2 rounded w-full bg-amber-50 outline-none"
+                    >
+                      <option className="bg-blue-300" value="scheduled">Scheduled</option>
+                      <option className="bg-green-300" value="completed">Completed</option>
+                      <option className="bg-red-300" value="cancelled">Cancelled</option>
+                    </select>
+                  </div>
+
+                  {property?.status === "Sold" ? (
+                    <div className="mt-3 bg-green-100 text-green-700 px-4 py-2 rounded-lg text-center font-semibold">
+                      SOLD
+                    </div>
+                  ) : (
+                    s.status === "completed" &&
+                    property?.id && (
+                      <button
+                        onClick={() => markPropertyAsSold(property.id)}
+                        className="mt-3 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg w-full transition"
+                      >
+                        Mark Property as Sold
+                      </button>
+                    )
+                  )}
+
+                  <button
+                    onClick={() => deleteShowing(s.id)}
+                    className="mt-3 bg-red-100 hover:bg-red-600 text-red-500 px-4 py-2 rounded-lg w-full transition"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
